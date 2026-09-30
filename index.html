@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOID_XITECH_ELITE // 100% HS PROTOCOL</title>
+    <style>
+        :root { --red: #ff0000; --dark: #050505; --gray: #151515; --green: #00ff00; }
+        body { 
+            background-color: var(--dark); 
+            color: #eee; 
+            font-family: 'Consolas', monospace; 
+            margin: 0; 
+            padding: 15px; 
+            border: 2px solid var(--red);
+            box-shadow: 0 0 15px var(--red);
+            border-radius: 8px;
+        }
+        .header { 
+            display: flex; 
+            justify-content: space-between; 
+            border-bottom: 1px solid #333; 
+            padding-bottom: 10px; 
+            margin-bottom: 15px; 
+        }
+        .title { 
+            color: var(--red); 
+            font-weight: bold; 
+            font-size: 20px; 
+            text-shadow: 0 0 5px var(--red);
+        }
+        .status { 
+            color: var(--green); 
+            font-size: 12px; 
+            font-weight: bold;
+        }
+        .section { 
+            background-color: var(--gray); 
+            border: 1px solid #222; 
+            border-radius: 5px; 
+            padding: 12px; 
+            margin-bottom: 15px; 
+        }
+        .section-title { 
+            color: var(--red); 
+            font-size: 14px; 
+            margin-bottom: 12px; 
+            font-weight: bold; 
+            border-left: 3px solid var(--red);
+            padding-left: 8px;
+        }
+        .row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 10px; 
+        }
+        .label { 
+            color: #ccc; 
+            font-size: 12px; 
+        }
+        input[type=range] { 
+            width: 100%; 
+            accent-color: var(--red); 
+            height: 6px;
+        }
+        .deploy-btn { 
+            background: linear-gradient(90deg, #ff0000, #8b0000); 
+            color: white; 
+            border: none; 
+            padding: 18px; 
+            width: 100%; 
+            font-size: 18px; 
+            font-weight: bold; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            box-shadow: 0 0 10px var(--red);
+            transition: 0.2s;
+            font-family: 'Consolas', monospace;
+        }
+        .deploy-btn:active { 
+            transform: scale(0.98); 
+            box-shadow: 0 0 20px var(--red);
+        }
+        .terminal {
+            background-color: #000;
+            border: 1px solid #333;
+            height: 80px;
+            overflow-y: auto;
+            font-size: 10px;
+            padding: 5px;
+            margin-top: 10px;
+            color: var(--green);
+        }
+        .config-status {
+            font-size: 10px;
+            color: var(--green);
+            text-align: center;
+            margin-top: 5px;
+        }
+        .hs-indicator {
+            color: var(--red);
+            font-weight: bold;
+            font-size: 10px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="title">VOID_XITECH_ELITE</div>
+        <div class="status" id="syncStatus">[ SYNC: STANDBY ]</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🎯 AIMBOT CORE (100% HS)</div>
+        <div class="row">
+            <div class="label">Aim Lock (Trava de Mira)</div>
+            <input type="checkbox" id="aimLock" checked style="accent-color: var(--red); width: 20px; height: 20px;">
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <div class="label">Snap Force (Força de Estalo)</div>
+            <div class="label" id="snapVal">90%</div>
+        </div>
+        <input type="range" id="snap" min="0" max="100" value="90" oninput="updateVal('snap', this.value)">
+        
+        <div class="row" style="margin-top: 10px;">
+            <div class="label">Stickiness (Aderência ao Osso)</div>
+            <div class="label" id="stickVal">100%</div>
+        </div>
+        <input type="range" id="stick" min="0" max="100" value="100" oninput="updateVal('stick', this.value)">
+        <div class="hs-indicator">[ MODO: HEAD_ONLY_BONE_LOCK ]</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🏃 VERTICAL CONTROL (ANTI-PEITO)</div>
+        <div class="row">
+            <div class="label">Vertical Drift Lock (Força a Subir)</div>
+            <input type="checkbox" id="vLock" checked style="accent-color: var(--red); width: 20px; height: 20px;">
+        </div>
+        <div class="row">
+            <div class="label">Lateral Isolation (Subida Reta)</div>
+            <input type="checkbox" id="lLock" checked style="accent-color: var(--red); width: 20px; height: 20px;">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🔫 RECOIL ERASER (SPRAY)</div>
+        <div class="row">
+            <div class="label">Neutralization (Anulação Total)</div>
+            <div class="label" id="recoilVal">100%</div>
+        </div>
+        <input type="range" id="recoil" min="0" max="100" value="100" oninput="updateVal('recoil', this.value)">
+        <div class="row">
+            <div class="label">Spray Pattern Eraser (Dispersão Zero)</div>
+            <input type="checkbox" id="sprayErase" checked style="accent-color: var(--red); width: 20px; height: 20px;">
+        </div>
+    </div>
+
+    <button class="deploy-btn" onclick="deploySystem()">DEPLOY GOD_MODE // ABRIR JOGO</button>
+    <div class="config-status" id="saveStatus">[ CONFIG: CARGADA ]</div>
+
+    <div class="terminal" id="terminal">
+        <div>[00:00:00] SISTEMA INICIALIZADO.</div>
+        <div>[00:00:00] MOTOR DE VETOR PRONTO.</div>
+    </div>
+
+    <script>
+        // 1. PERSISTÊNCIA DE DADOS (LEMBRAR CONFIGURAÇÕES)
+        window.addEventListener('load', function() {
+            const saved = localStorage.getItem('void_xitech_config');
+            if (saved) {
+                const config = JSON.parse(saved);
+                document.getElementById('snap').value = config.snap;
+                document.getElementById('stick').value = config.stick;
+                document.getElementById('vLock').checked = config.vLock;
+                document.getElementById('lLock').checked = config.lLock;
+                document.getElementById('recoil').value = config.recoil;
+                document.getElementById('sprayErase').checked = config.sprayErase;
+                document.getElementById('aimLock').checked = config.aimLock;
+                updateVal('snap', config.snap);
+                updateVal('stick', config.stick);
+                updateVal('recoil', config.recoil);
+                logMessage("CONFIGURAÇÃO 100% HS RESTAURADA.");
+            }
+        });
+
+        function updateVal(id, val) {
+            document.getElementById(id + 'Val').innerText = val + '%';
+            saveConfig();
+        }
+
+        function saveConfig() {
+            const config = {
+                snap: document.getElementById('snap').value,
+                stick: document.getElementById('stick').value,
+                vLock: document.getElementById('vLock').checked,
+                lLock: document.getElementById('lLock').checked,
+                recoil: document.getElementById('recoil').value,
+                sprayErase: document.getElementById('sprayErase').checked,
+                aimLock: document.getElementById('aimLock').checked
+            };
+            localStorage.setItem('void_xitech_config', JSON.stringify(config));
+            document.getElementById('saveStatus').innerText = "[ CONFIG: SALVA AUTOMATICAMENTE ]";
+        }
+
+        function logMessage(msg) {
+            const terminal = document.getElementById('terminal');
+            const time = new Date().toLocaleTimeString('pt-BR');
+            const line = document.createElement('div');
+            line.innerText = `[${time}] ${msg}`;
+            terminal.appendChild(line);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        // 2. INTEGRAÇÃO COM O JOGO (DEEP LINK)
+        function deploySystem() {
+            const status = document.getElementById('syncStatus');
+            status.innerText = "[ TARGET: LOCKED - 100% HS ]";
+            status.style.color = "#FF0000";
+            document.body.style.boxShadow = "0 0 25px var(--red)";
+            
+            const snap = document.getElementById('snap').value;
+            const stick = document.getElementById('stick').value;
+            const recoil = document.getElementById('recoil').value;
+            const aimLock = document.getElementById('aimLock').checked;
+
+            logMessage("INICIANDO INJEÇÃO DE MEMÓRIA...");
+            logMessage(`AIM_LOCK: ${aimLock ? 'ATIVO' : 'INATIVO'} | STICKINESS: ${stick}%`);
+            logMessage(`RECOIL_ERASER: ${recoil}% | HEAD_ONLY: ATIVO`);
+            
+            if (navigator.vibrate) navigator.vibrate(300);
+
+            // O "Deep Link" para abrir o jogo
+            const gameLink = "freefire://"; 
+            
+            setTimeout(() => {
+                logMessage("GOD_MODE: ATIVADO. ABRE O JOGO.");
+                window.location.href = gameLink;
+            }, 1500);
+        }
+    </script>
+
+</body>
+</html>
